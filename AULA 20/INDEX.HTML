@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #007BFF;
+            font-family: Arial, sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('MATEMATICA.JPG');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+    z-index: -1;
+}
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+
+        input, select {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+            width: 120px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 200px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            font-size: 20px;
+            color: red;
+            font-weight: bold;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-image"></div>
+
+    <div class="container">
+        <h1>Calculadora</h1>
+        <input type="number" id="n1" placeholder="Número 1">
+        <select id="operacao">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="number" id="n2" placeholder="Número 2">
+        <br>
+        <button onclick="Calcular()">Calcular</button>
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        function Calcular() {
+            let valor1 = Number(document.getElementById("n1").value);
+            let valor2 = Number(document.getElementById("n2").value);
+            let operador = document.getElementById("operacao").value;
+            let resultado = 0;
+
+            switch (operador) {
+                case '+':
+                    resultado = valor1 + valor2;
+                    break;
+                case '-':
+                    resultado = valor1 - valor2;
+                    break;
+                case '*':
+                    resultado = valor1 * valor2;
+                    break;
+                case '/':
+                    if (valor2 === 0) {
+                        alert("Divisão por zero não é permitida.");
+                        return;
+                    }
+                    resultado = valor1 / valor2;
+                    break;
+                default:
+                    alert("Operação inválida");
+                    return;
+            }
+
+            document.getElementById("resultado").innerHTML = "Resultado: " + resultado;
+        }
+    </script>
+</body>
+
+</html>
